@@ -1,0 +1,26 @@
+{
+  "name": "JarOfMarbles",
+  "version": "1.0",
+  "manifest_version": 3,
+  "chrome_url_overrides": {
+    "newtab": "./pages/index.html"
+  },
+  "permissions": [
+    "storage",
+    "tabs"
+  ],
+  "content_scripts": [
+    {
+      "matches": [
+        "<all_urls>"
+      ],
+      "run_at": "document_start",
+      "js": [
+        "main.js"
+      ]
+    }
+  ],
+  "background": {
+    "service_worker": "./background.js"
+  }
+}
