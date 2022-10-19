@@ -1,0 +1,162 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+*:focus {
+    outline: none;
+}
+
+body {
+    color: #414141;
+    margin: 0;
+    background-image: url("../images/background.png");
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    font-family: 'Inter', sans-serif;
+}
+
+#page-container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#center-container {
+    display: flex;
+    flex-direction: column;
+    height: 45%;
+    justify-content: space-around;
+    align-items: center;
+}
+
+#currentThought {
+    font-size: 5vw;
+    font-weight: 200;
+    width: 90vw;
+    text-align: center;
+    margin: 0;
+}
+
+#save-thought-section {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 0.2vw solid #414141;
+    border-radius: 1vw;
+    padding: 0;
+}
+
+#save {
+    margin: 0;
+    height: 4vw;
+    width: 11vw;
+    border-radius: 0 0.7vw 0.7vw 0;
+    border: 0vw solid #414141;
+    background-color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.3vw;
+    font-weight: 200;
+}
+
+#save:hover {
+    cursor: pointer;
+    opacity: 0.7;
+    background-color: #ededed;
+}
+
+#newThought {
+    margin: 0;
+    height: 4vw;
+    width: 52vw;
+    border-radius: 0.7vw 0 0 0.7vw;
+    border: 0vw solid #414141;
+    padding: 0vw 1vw;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.4vw;
+    font-weight: 200;
+}
+
+#divider {
+    background-color: #414141;
+    height: 4vw;
+    width: 0.2vw;
+    margin: 0;
+    padding: 0;
+}
+
+#logo-text {
+    font-weight: 100;
+    font-size: 3vw;
+    margin: 0.5vw 0vw;
+
+}
+
+#logo-container {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 5vw;
+    margin-bottom: 2vw;
+}
+
+#logo {
+    height: 12vw;
+    margin: 0.5vw 0vw;
+}
+
+.settings-button {
+    margin: 0;
+    padding: 0.75vw 2vw;
+    border-radius: 0.5vw;
+    border: 0.15vw solid #414141;
+    background-color: white;
+    font-family: 'Inter', sans-serif;
+    font-size: 0.9vw;
+    font-weight: 200;
+}
+
+.settings-button:hover {
+    cursor: pointer;
+    opacity: 0.7;
+    background-color: #ededed;
+}
+
+.input-section {
+    margin: 0;
+    height: 100%;
+    width: 20vw;
+    border-radius: 0.7vw;
+    border: 0.2vw solid #414141;
+    padding: 0vw 1vw;
+    font-family: 'Inter', sans-serif;
+    font-size: 1.4vw;
+    font-weight: 200;
+}
+
+#thought-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+#date-created {
+    font-weight: 100;
+    font-size: 1.5vw;
+}
+
+#dateInput {
+    display: none
+}
+
+#info-text-container {
+    width: 60vw;
+}
+
+#info-text {
+    font-weight: 100;
+    font-size: 1.2vw;
+    text-align: center;
+    overflow-wrap: normal;
+}

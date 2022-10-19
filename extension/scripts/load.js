@@ -29,7 +29,7 @@ function saveThought() {
             });
         });
         document.getElementById("newThought").value = "";
-        document.getElementById("newThought").placeholder = "Thought submitted";
+        document.getElementById("newThought").placeholder = "Your thought is entered!";
     }
 }
 
@@ -61,6 +61,7 @@ async function setThought() {
     var data = [];
     var todayDate;
 
+   
     await chrome.storage.local.get(['database'], function (result) {
         data = result.database;
     });
@@ -75,10 +76,12 @@ async function setThought() {
             alert("date changed")
             chrome.storage.local.set({ dateToday: today }, function () {
             });
+           
         }
         else {
             alert("no random")
-            document.getElementById("currentThought").innerHTML = data[thoughtIndex].thought + " created on " + data[thoughtIndex].date + " times displayed " + data[thoughtIndex].displayCount;
+            document.getElementById("currentThought").innerHTML = data[thoughtIndex].thought + " times displayed " + data[thoughtIndex].displayCount;
+            document.getElementById("date-created").innerHTML = " created on " + data[thoughtIndex].date;
             return;
         }
     });
@@ -92,15 +95,15 @@ async function setThought() {
             while (displayed == false) {
                 var index = Math.floor(Math.random() * randomInt);
                 if (db[index].displayCount < db[0].displayCount + 1) {
-                    document.getElementById("currentThought").innerHTML = db[index].thought + " created on " + db[index].date + " times displayed " + db[index].displayCount;
+                    document.getElementById("currentThought").innerHTML = db[index].thought + " times displayed " + db[index].displayCount;
+                    document.getElementById("date-created").innerHTML = " created on " + db[index].date;
                     db[index].displayCount++;
                     indexOfThought = index;
                     db.sort(compareDisplays);
                     chrome.storage.local.set({ database: db }, function () {
                     });
-                    chrome.storage.local.set({ todayThoughtIndex: index }, function () {
+                    chrome.storage.local.set({ todayThoughtIndex: index}, function () {
                     });
-                    alert(index)
                     displayed = true;
                     return;
                 }
@@ -109,7 +112,8 @@ async function setThought() {
     });
 }
 
-function setDate() {
+function setDate ()
+{
     var newDate = document.getElementById("dateInput").value;
     chrome.storage.local.set({ dateToday: newDate }, function () {
     });
