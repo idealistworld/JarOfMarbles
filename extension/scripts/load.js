@@ -19,8 +19,14 @@ async function checkDay() {
     });
 }
 
+function wordCount(str) { 
+    return str.split(" ").length;
+  }
+  
+
 function saveThought() {
-    if (document.getElementById("newThought").value != "") {
+    var count = wordCount(document.getElementById("newThought").value);
+    if (document.getElementById("newThought").value != "" && count < 10) {
         inputtedThought = document.getElementById("newThought").value;
         chrome.storage.local.get(['database'], function (result) {
             var db = result.database;
@@ -30,6 +36,9 @@ function saveThought() {
         });
         document.getElementById("newThought").value = "";
         document.getElementById("newThought").placeholder = "Your thought is entered!";
+    }
+    else {
+        alert("Word limited exceeded. Keep the thought to under 10 words.")
     }
 }
 
@@ -78,9 +87,9 @@ async function setThought() {
             });
            
         }
-        else {
+        if(todayDate == today) {
             alert("no random")
-            document.getElementById("currentThought").innerHTML = data[thoughtIndex].thought + " times displayed " + data[thoughtIndex].displayCount;
+            document.getElementById("currentThought").innerHTML = '"' + data[thoughtIndex].thought + '"'; //" times displayed " + data[thoughtIndex].displayCount;
             document.getElementById("date-created").innerHTML = " created on " + data[thoughtIndex].date;
             return;
         }
@@ -95,15 +104,18 @@ async function setThought() {
             while (displayed == false) {
                 var index = Math.floor(Math.random() * randomInt);
                 if (db[index].displayCount < db[0].displayCount + 1) {
-                    document.getElementById("currentThought").innerHTML = db[index].thought + " times displayed " + db[index].displayCount;
+                    document.getElementById("currentThought").innerHTML = '"' + db[index].thought + '"'; //" times displayed " + db[index].displayCount;
                     document.getElementById("date-created").innerHTML = " created on " + db[index].date;
                     db[index].displayCount++;
                     indexOfThought = index;
-                    db.sort(compareDisplays);
                     chrome.storage.local.set({ database: db }, function () {
+                    });
+                    chrome.storage.local.set({ dateToday: today }, function () {
                     });
                     chrome.storage.local.set({ todayThoughtIndex: index}, function () {
                     });
+                    db.sort(compareDisplays);
+
                     displayed = true;
                     return;
                 }

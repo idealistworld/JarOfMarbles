@@ -31,18 +31,21 @@ body {
 }
 
 #currentThought {
-    font-size: 5vw;
+    font-size: 4vw;
     font-weight: 200;
-    width: 90vw;
+    width: 75vw;
     text-align: center;
     margin: 0;
+    overflow-wrap: break-word;
+    word-wrap: break-word;
+    hyphens: auto;
 }
 
 #save-thought-section {
     display: flex;
     align-items: center;
     justify-content: center;
-    border: 0.2vw solid #414141;
+    border: 0.18vw solid #414141;
     border-radius: 1vw;
     padding: 0;
 }
@@ -80,14 +83,14 @@ body {
 #divider {
     background-color: #414141;
     height: 4vw;
-    width: 0.2vw;
+    width: 0.15vw;
     margin: 0;
     padding: 0;
 }
 
 #logo-text {
     font-weight: 100;
-    font-size: 3vw;
+    font-size: 2.2vw;
     margin: 0.5vw 0vw;
 
 }
@@ -97,11 +100,11 @@ body {
     align-items: center;
     flex-direction: column;
     margin-top: 5vw;
-    margin-bottom: 2vw;
+    margin-bottom: 3vw;
 }
 
 #logo {
-    height: 12vw;
+    height: 8vw;
     margin: 0.5vw 0vw;
 }
 
@@ -139,6 +142,7 @@ body {
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    width: 65vw;
 }
 
 #date-created {
@@ -159,4 +163,10 @@ body {
     font-size: 1.2vw;
     text-align: center;
     overflow-wrap: normal;
+}
+
+#settings-container {
+    width: 37vw;
+    display: flex;
+    justify-content: space-around;
 }
