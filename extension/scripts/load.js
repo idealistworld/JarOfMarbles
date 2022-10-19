@@ -25,7 +25,7 @@ function wordCount(str) {
   
 
 function saveThought() {
-    var count = wordCount(document.getElementById("newThought").value);
+    var count = wordCount(document.getElementById("newThought").value) -1;
     if (document.getElementById("newThought").value != "" && count < 10) {
         inputtedThought = document.getElementById("newThought").value;
         chrome.storage.local.get(['database'], function (result) {
@@ -37,6 +37,9 @@ function saveThought() {
         document.getElementById("newThought").value = "";
         document.getElementById("newThought").placeholder = "Your thought is entered!";
     }
+    else if (count == 0){
+        alert("Enter a new thought to continue");
+    }
     else {
         alert("Word limited exceeded. Keep the thought to under 10 words.")
     }
@@ -46,15 +49,16 @@ function deleteThought() {
     chrome.storage.local.get(['database'], function (result) {
         var db = result.database;
         db.splice(indexOfThought, 1);
-        document.getElementById("delete").style.display = "none"
         chrome.storage.local.set({ database: db }, function () {
         });
+        location.reload();
     });
 }
 
 function clearThoughts() {
     chrome.storage.local.set({ database: [] }, function () {
     });
+    location.reload();
 }
 
 function compareDisplays(a, b) {
@@ -82,13 +86,11 @@ async function setThought() {
     await chrome.storage.local.get(['todayThoughtIndex'], function (result) {
         var thoughtIndex = result.todayThoughtIndex;
         if (todayDate != today) {
-            alert("date changed")
             chrome.storage.local.set({ dateToday: today }, function () {
             });
            
         }
         if(todayDate == today) {
-            alert("no random")
             document.getElementById("currentThought").innerHTML = '"' + data[thoughtIndex].thought + '"'; //" times displayed " + data[thoughtIndex].displayCount;
             document.getElementById("date-created").innerHTML = " created on " + data[thoughtIndex].date;
             return;
@@ -100,7 +102,6 @@ async function setThought() {
         randomInt = db.length;
         var displayed = false;
         if (db.length != 0 && newDay) {
-            alert("random")
             while (displayed == false) {
                 var index = Math.floor(Math.random() * randomInt);
                 if (db[index].displayCount < db[0].displayCount + 1) {
@@ -129,6 +130,7 @@ function setDate ()
     var newDate = document.getElementById("dateInput").value;
     chrome.storage.local.set({ dateToday: newDate }, function () {
     });
+    location.reload();
 }
 
 checkDay();
